@@ -3,13 +3,9 @@ project: deblur_gan
 experiment_desc: fpn
 
 train:
-#  files_a: &FILES_A /datasets/my_dataset/**/*.jpg
-  #可以使用绝对路径
-  files_a: &FILES_A D:/deblur/goprol_large/**/*.png
-  files_b: *FILES_A
-#  files_a: &FILES_A ./dataset1/blur/*.png
-#  files_b: &FILES_B ./dataset1/sharp/*.png
-  size: &SIZE 256
+  files_a: &FILES_A C:\Users\Admin\OneDrive\Documents\MCA dissertation\split\A\high\*.png
+  files_b: &FILES_B C:\Users\Admin\OneDrive\Documents\MCA dissertation\split\B\high\*.png
+  size: &SIZE 512
   crop: random
   preload: &PRELOAD false
   preload_size: &PRELOAD_SIZE 0
@@ -33,7 +29,7 @@ train:
 
 val:
   files_a: *FILES_A
-  files_b: *FILES_A
+  files_b: *FILES_B
 #  files_a: &FILES_A
 #  files_b: &FILES_B
   size: *SIZE
@@ -47,7 +43,7 @@ val:
 phase: train
 warmup_num: 3
 model:
-  g_name: fpn_inception
+  g_name: fpn_densenet
   blocks: 9
   d_name: double_gan # may be no_gan, patch_gan, double_gan, multi_scale
   d_layers: 3
@@ -58,11 +54,11 @@ model:
   norm_layer: instance
   dropout: True
 
-num_epochs: 10
+num_epochs: 50
 train_batches_per_epoch: 1000
 val_batches_per_epoch: 100
 batch_size: 1
-image_size: [256, 256]
+image_size: [512, 512]
 
 optimizer:
   name: adam
