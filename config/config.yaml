@@ -3,8 +3,8 @@ project: deblur_gan
 experiment_desc: fpn
 
 train:
-  files_a: &FILES_A C:\Users\Admin\OneDrive\Documents\MCA dissertation\split\A\high\*.png
-  files_b: &FILES_B C:\Users\Admin\OneDrive\Documents\MCA dissertation\split\B\high\*.png
+  files_a: &FILES_A /kaggle/working/project/dataset/high/train/A/*.png
+  files_b: &FILES_B /kaggle/working/project/dataset/high/train/B/*.png
   size: &SIZE 512
   crop: random
   preload: &PRELOAD false
