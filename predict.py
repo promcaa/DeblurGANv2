@@ -8,6 +8,7 @@ import torch
 import yaml
 from fire import Fire
 from tqdm import tqdm
+from glob import glob
 
 from aug import get_normalize
 from models.networks import get_generator
@@ -91,7 +92,7 @@ def process_video(pairs, predictor, output_dir):
 def main(img_pattern: str,
          mask_pattern: Optional[str] = None,
          weights_path='best_fpn.h5',
-         out_dir='output/',
+         out_dir='submit/',
          side_by_side: bool = False,
          video: bool = False):
     def sorted_glob(pattern):
@@ -134,9 +135,7 @@ def get_files():
 
 
 if __name__ == '__main__':
-  #  Fire(main)
-#增加批量处理图片：
-    img_path=get_files()
+    img_path=glob('/kaggle/working/Project/dataset/medium/test/A/*.png')
     for i in img_path:
         main(i)
-    # main('test_img/tt.mp4')
+   
