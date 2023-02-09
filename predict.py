@@ -90,8 +90,8 @@ def process_video(pairs, predictor, output_dir):
 
 def main(img_pattern: str,
          mask_pattern: Optional[str] = None,
-         weights_path='fpn_inception.h5',
-         out_dir='submit/',
+         weights_path='best_fpn.h5',
+         out_dir='output/',
          side_by_side: bool = False,
          video: bool = False):
     def sorted_glob(pattern):
