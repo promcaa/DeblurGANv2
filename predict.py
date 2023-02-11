@@ -135,7 +135,7 @@ def get_files():
 
 
 if __name__ == '__main__':
-    img_path=glob('/kaggle/working/Project/dataset/medium/test/A/*.png')
+    img_path=glob('/kaggle/working/Project/medium/test/A/*.png')
     for i in img_path:
         main(i)
    
