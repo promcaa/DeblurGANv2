@@ -3,8 +3,8 @@ project: deblur_gan
 experiment_desc: fpn
 
 train:
-  files_a: &FILES_A /kaggle/working/Project/low/test/A/*.png
-  files_b: &FILES_B /kaggle/working/Project/low/test/B/*.png
+  files_a: &FILES_A /kaggle/working/Project/high/train/A/*.png
+  files_b: &FILES_B /kaggle/working/Project/high/train/B/*.png
   size: &SIZE 256
   crop: random
   preload: &PRELOAD false
@@ -55,8 +55,8 @@ model:
   dropout: True
 
 num_epochs: 50
-train_batches_per_epoch: 812
-val_batches_per_epoch: 97
+train_batches_per_epoch: 594
+val_batches_per_epoch: 66
 batch_size: 1
 image_size: [256, 256]
 
