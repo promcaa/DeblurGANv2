@@ -56,6 +56,22 @@ class FPNInception(nn.Module):
             norm_layer(num_filters // 2),
             nn.ReLU(),
         )
+        
+#         Editted here
+
+        self.smooth3 = nn.Sequential(
+            nn.Conv2d(num_filters, num_filters // 2, kernel_size=3, padding=1),
+            norm_layer(num_filters // 2),
+            nn.ReLU(),
+        )
+    
+    
+        self.smooth4 = nn.Sequential(
+            nn.Conv2d(num_filters, num_filters // 2, kernel_size=3, padding=1),
+            norm_layer(num_filters // 2),
+            nn.ReLU(),
+        )
+
 
         self.final = nn.Conv2d(num_filters // 2, output_ch, kernel_size=3, padding=1)
 
@@ -73,6 +89,10 @@ class FPNInception(nn.Module):
         smoothed = self.smooth(torch.cat([map4, map3, map2, map1], dim=1))
         smoothed = nn.functional.upsample(smoothed, scale_factor=2, mode="nearest")
         smoothed = self.smooth2(smoothed + map0)
+        smoothed = nn.functional.upsample(smoothed, scale_factor=2, mode="nearest")
+        smoothed = self.smooth3(smoothed + map0)
+        smoothed = nn.functional.upsample(smoothed, scale_factor=2, mode="nearest")
+        smoothed = self.smooth4(smoothed + map0)
         smoothed = nn.functional.upsample(smoothed, scale_factor=2, mode="nearest")
 
         final = self.final(smoothed)
