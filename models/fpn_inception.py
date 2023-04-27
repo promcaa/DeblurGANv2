@@ -57,22 +57,6 @@ class FPNInception(nn.Module):
             nn.ReLU(),
         )
         
-#         Editted here
-
-        self.smooth3 = nn.Sequential(
-            nn.Conv2d(num_filters, num_filters // 2, kernel_size=3, padding=1),
-            norm_layer(num_filters // 2),
-            nn.ReLU(),
-        )
-    
-    
-        self.smooth4 = nn.Sequential(
-            nn.Conv2d(num_filters, num_filters // 2, kernel_size=3, padding=1),
-            norm_layer(num_filters // 2),
-            nn.ReLU(),
-        )
-
-
         self.final = nn.Conv2d(num_filters // 2, output_ch, kernel_size=3, padding=1)
 
     def unfreeze(self):
